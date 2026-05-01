@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Passo Leve — Volte a Caminhar com Leveza e Segurança</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #7B9E87;
+    --sage-light: #C8DDD1;
+    --sage-dark: #4A7060;
+    --blush: #E8C4B8;
+    --blush-dark: #C49080;
+    --cream: #FBF7F2;
+    --warm-white: #FEFCF9;
+    --gold: #C4963A;
+    --gold-light: #F0D99A;
+    --charcoal: #2C2C2C;
+    --warm-gray: #6B6560;
+    --light-gray: #F0EDE8;
+    --red-urgent: #B84040;
+    --red-soft: #FDEAEA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── UTILS ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  .container-wide { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  .text-center { text-align: center; }
+  .serif { font-family: 'Playfair Display', serif; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--red-urgent);
+    color: #fff;
+    text-align: center;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .topbar span { opacity: 0.85; font-weight: 400; margin-left: 8px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #2D4A3E 0%, #3B6150 40%, #4A7060 100%);
+    padding: 72px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 58px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.18;
+    margin-bottom: 24px;
+    max-width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 em { color: var(--gold-light); font-style: normal; }
+  .hero-sub {
+    font-size: clamp(17px, 2.2vw, 21px);
+    color: rgba(255,255,255,0.88);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .hero-proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 36px;
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+  }
+  .stars { color: var(--gold-light); font-size: 18px; letter-spacing: 2px; }
+  .hero-image-wrapper {
+    max-width: 480px;
+    margin: 48px auto 0;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .mock-woman {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .mock-woman .figure { font-size: 80px; line-height: 1; }
+  .mock-woman p { color: rgba(255,255,255,0.65); font-size: 13px; text-align: center; max-width: 200px; }
+
+  /* ── CTA BUTTON ── */
+  .btn-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, #D4A84B 100%);
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 2vw, 20px);
+    padding: 20px 52px;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 32px rgba(196,150,58,0.45);
+    transition: transform 0.18s, box-shadow 0.18s;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(196,150,58,0.55); }
+  .btn-cta-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 12px; }
+  .btn-cta-dark { background: linear-gradient(135deg, var(--sage-dark) 0%, #3B6150 100%); box-shadow: 0 8px 32px rgba(74,112,96,0.4); }
+
+  /* ── SECTION STYLES ── */
+  section { padding: 72px 0; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 14px;
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.22;
+    margin-bottom: 20px;
+  }
+  h2.section-title em { color: var(--sage-dark); font-style: italic; }
+  .section-subtitle {
+    font-size: 18px;
+    color: var(--warm-gray);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.65;
+  }
+
+  /* ── DOR SECTION ── */
+  .dor-section { background: var(--warm-white); }
+  .dor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 44px;
+  }
+  .dor-card {
+    background: #fff;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dor-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blush-dark), var(--blush));
+  }
+  .dor-icon { font-size: 32px; margin-bottom: 14px; }
+  .dor-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; color: var(--charcoal); }
+  .dor-card p { font-size: 15px; color: var(--warm-gray); line-height: 1.6; }
+  .dor-closing {
+    background: linear-gradient(135deg, #FBF0E8 0%, #F5EAE4 100%);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-top: 48px;
+    border-left: 5px solid var(--blush-dark);
+  }
+  .dor-closing p { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--charcoal); line-height: 1.55; }
+  .dor-closing strong { color: var(--sage-dark); }
+
+  /* ── BIG IDEA ── */
+  .big-idea { background: var(--charcoal); }
+  .big-idea h2.section-title { color: #fff; }
+  .big-idea h2.section-title em { color: var(--gold-light); }
+  .big-idea .section-subtitle { color: rgba(255,255,255,0.7); }
+  .idea-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 44px 48px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .idea-box p { color: rgba(255,255,255,0.85); font-size: 17px; line-height: 1.75; margin-bottom: 20px; }
+  .idea-box p:last-child { margin-bottom: 0; }
+  .idea-box strong { color: var(--gold-light); }
+  .myth-vs { display: flex; gap: 24px; margin: 36px 0; flex-wrap: wrap; }
+  .myth-box {
+    flex: 1; min-width: 200px;
+    border-radius: 14px;
+    padding: 24px 20px;
+  }
+  .myth-box.wrong { background: rgba(184,64,64,0.15); border: 1px solid rgba(184,64,64,0.3); }
+  .myth-box.right { background: rgba(123,158,135,0.2); border: 1px solid rgba(123,158,135,0.35); }
+  .myth-box .label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .myth-box.wrong .label { color: #E07070; }
+  .myth-box.right .label { color: var(--sage-light); }
+  .myth-box p { font-size: 15px; color: rgba(255,255,255,0.8); margin: 0; }
+
+  /* ── SOLUÇÃO ── */
+  .solucao { background: var(--cream); }
+  .protocolo-visual {
+    display: flex;
+    gap: 0;
+    max-width: 700px;
+    margin: 48px auto 0;
+  }
+  .proto-block {
+    flex: 1;
+    text-align: center;
+    padding: 36px 20px;
+    position: relative;
+  }
+  .proto-block:nth-child(1) { background: #E8F2EC; border-radius: 20px 0 0 20px; }
+  .proto-block:nth-child(2) { background: #D1E8DA; }
+  .proto-block:nth-child(3) { background: #B9DEC8; border-radius: 0 20px 20px 0; }
+  .proto-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--sage-dark);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .proto-block h3 { font-size: 15px; font-weight: 700; color: var(--sage-dark); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .proto-block p { font-size: 13px; color: var(--sage-dark); opacity: 0.8; }
+  .proto-arrow { position: absolute; right: -12px; top: 50%; transform: translateY(-50%); z-index: 1; color: var(--sage-dark); font-size: 20px; }
+  .solucao-desc {
+    max-width: 640px;
+    margin: 48px auto 0;
+    text-align: center;
+  }
+  .solucao-desc p { font-size: 17px; color: var(--warm-gray); line-height: 1.75; margin-bottom: 16px; }
+
+  /* ── FASES ── */
+  .fases { background: var(--warm-white); }
+  .fases-timeline { display: flex; flex-direction: column; gap: 0; max-width: 680px; margin: 48px auto 0; }
+  .fase-item { display: flex; gap: 28px; padding: 32px 0; border-bottom: 1px solid var(--light-gray); align-items: flex-start; }
+  .fase-item:last-child { border-bottom: none; }
+  .fase-num-wrap { flex-shrink: 0; }
+  .fase-num {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700; color: #fff;
+  }
+  .fase-content { flex: 1; }
+  .fase-dias { font-size: 12px; font-weight: 700; color: var(--sage); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .fase-content h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 10px; }
+  .fase-content p { font-size: 16px; color: var(--warm-gray); line-height: 1.65; }
+  .fase-result {
+    display: inline-block;
+    background: var(--sage-light);
+    color: var(--sage-dark);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+
+  /* ── BENEFÍCIOS ── */
+  .beneficios { background: linear-gradient(160deg, #2D4A3E 0%, #3B6150 100%); }
+  .beneficios h2.section-title { color: #fff; }
+  .beneficios h2.section-title em { color: var(--gold-light); }
+  .bene-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .bene-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 28px 22px;
+    transition: background 0.2s;
+  }
+  .bene-card:hover { background: rgba(255,255,255,0.13); }
+  .bene-icon { font-size: 36px; margin-bottom: 16px; }
+  .bene-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: #fff; margin-bottom: 8px; }
+  .bene-card p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+  /* ── PROVAS ── */
+  .provas { background: var(--cream); }
+  .credenciais { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-bottom: 56px; }
+  .cred-item { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--light-gray); border-radius: 50px; padding: 12px 22px; }
+  .cred-item .cred-icon { font-size: 22px; }
+  .cred-item p { font-size: 14px; font-weight: 700; color: var(--charcoal); }
+  .depo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 44px; }
+  .depo-card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 20px;
+    padding: 32px 28px;
+    position: relative;
+  }
+  .depo-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--sage-light);
+    position: absolute;
+    top: 8px; left: 22px;
+    line-height: 1;
+  }
+  .depo-text { font-size: 16px; color: var(--warm-gray); line-height: 1.7; margin-bottom: 20px; padding-top: 36px; }
+  .depo-text strong { color: var(--charcoal); }
+  .depo-author { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--light-gray); padding-top: 18px; }
+  .depo-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--sage-light), var(--blush));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: var(--sage-dark);
+  }
+  .depo-name { font-weight: 700; font-size: 15px; color: var(--charcoal); }
+  .depo-info { font-size: 13px; color: var(--warm-gray); }
+  .depo-stars { color: var(--gold); font-size: 14px; margin-top: 2px; }
+
+  /* ── O QUE RECEBE ── */
+  .recebe { background: var(--warm-white); }
+  .produto-principal {
+    background: linear-gradient(135deg, #EAF3EE 0%, #D8EBDF 100%);
+    border: 2px solid var(--sage);
+    border-radius: 20px;
+    padding: 44px 40px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .prod-tag { display: inline-block; background: var(--sage); color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 18px; }
+  .produto-principal h3 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 14px; color: var(--charcoal); }
+  .produto-principal p { font-size: 17px; color: var(--warm-gray); max-width: 500px; margin: 0 auto 24px; }
+  .incluso-list { list-style: none; text-align: left; max-width: 400px; margin: 0 auto; }
+  .incluso-list li { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 15px; color: var(--charcoal); }
+  .incluso-list li::before { content: '✓'; background: var(--sage); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 16px; }
+  .bonus-card {
+    background: #fff;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bonus-card::after {
+    content: 'BÔNUS';
+    position: absolute; top: 16px; right: -26px;
+    background: var(--gold);
+    color: #fff; font-size: 10px; font-weight: 700;
+    padding: 4px 30px; transform: rotate(45deg);
+    letter-spacing: 0.08em;
+  }
+  .bonus-num { font-size: 13px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .bonus-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; }
+  .bonus-card p { font-size: 14px; color: var(--warm-gray); line-height: 1.6; margin-bottom: 12px; }
+  .bonus-valor { font-size: 13px; font-weight: 700; color: var(--sage-dark); }
+
+  /* ── OFERTA ── */
+  .oferta { background: var(--cream); }
+  .oferta-box {
+    max-width: 660px;
+    margin: 0 auto;
+    background: #fff;
+    border: 2px solid var(--sage);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+  .oferta-header {
+    background: linear-gradient(135deg, var(--sage-dark) 0%, #2D4A3E 100%);
+    padding: 36px 40px;
+    text-align: center;
+  }
+  .oferta-header h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: #fff; margin-bottom: 10px; }
+  .oferta-header p { color: rgba(255,255,255,0.8); font-size: 16px; }
+  .oferta-body { padding: 44px 40px; }
+  .valor-stack { text-align: center; margin-bottom: 36px; }
+  .valor-original { font-size: 18px; color: var(--warm-gray); text-decoration: line-through; margin-bottom: 4px; }
+  .valor-label { font-size: 13px; color: var(--warm-gray); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .valor-preco { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; color: var(--sage-dark); line-height: 1; }
+  .valor-preco span { font-size: 32px; }
+  .valor-detalhe { font-size: 15px; color: var(--warm-gray); margin-top: 8px; }
+  .incluso-oferta { margin: 28px 0; }
+  .incluso-oferta li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--light-gray); font-size: 15px; }
+  .incluso-oferta li:last-child { border-bottom: none; }
+  .incluso-oferta .check { color: var(--sage); font-size: 18px; font-weight: 700; }
+  .incluso-oferta .valor-item { margin-left: auto; font-size: 13px; color: var(--warm-gray); }
+  .order-bump {
+    background: var(--red-soft);
+    border: 2px dashed var(--red-urgent);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .order-bump input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--red-urgent); flex-shrink: 0; margin-top: 3px; cursor: pointer; }
+  .order-bump-text p { font-size: 14px; line-height: 1.6; color: var(--charcoal); }
+  .order-bump-text strong { color: var(--red-urgent); }
+  .garantia-box {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 24px;
+    border: 1px solid var(--light-gray);
+  }
+  .garantia-icon { font-size: 48px; margin-bottom: 12px; }
+  .garantia-box h4 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 8px; }
+  .garantia-box p { font-size: 14px; color: var(--warm-gray); line-height: 1.6; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--warm-white); }
+  .faq-list { max-width: 680px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 0; }
+  .faq-item {
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0;
+  }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 22px 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-question:hover { color: var(--sage-dark); }
+  .faq-arrow { color: var(--sage); font-size: 20px; flex-shrink: 0; transition: transform 0.25s; }
+  .faq-answer { font-size: 16px; color: var(--warm-gray); line-height: 1.7; padding: 0 8px 22px; display: none; }
+  .faq-item.open .faq-answer { display: block; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  /* ── FECHAMENTO EMOCIONAL ── */
+  .fechamento {
+    background: linear-gradient(160deg, #1A2E26 0%, #2D4A3E 50%, #3B6150 100%);
+    padding: 96px 24px;
+    text-align: center;
+  }
+  .fechamento h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .fechamento h2 em { color: var(--gold-light); font-style: italic; }
+  .fechamento p { font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,0.82); max-width: 580px; margin: 0 auto 44px; line-height: 1.7; }
+  .fechamento-nota { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 20px; }
+
+  /* ── RODAPÉ ── */
+  footer {
+    background: var(--charcoal);
+    padding: 36px 24px;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--light-gray); margin: 0; }
+  .divider-dark { border-top-color: rgba(255,255,255,0.1); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .idea-box { padding: 28px 22px; }
+    .protocolo-visual { flex-direction: column; }
+    .proto-block:nth-child(1) { border-radius: 20px 20px 0 0; }
+    .proto-block:nth-child(3) { border-radius: 0 0 20px 20px; }
+    .proto-arrow { display: none; }
+    .oferta-body { padding: 28px 22px; }
+    .oferta-header { padding: 28px 22px; }
+    .produto-principal { padding: 32px 22px; }
+  }
+
+  /* ── PULSE ANIMATION ── */
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 8px 32px rgba(196,150,58,0.45); }
+    50% { box-shadow: 0 8px 48px rgba(196,150,58,0.7); }
+  }
+  .btn-cta { animation: pulse-gold 2.5s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  🔥 OFERTA ESPECIAL DE LANÇAMENTO — Apenas R$97 <span>| Encerra em breve</span>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. HERO SECTION -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container text-center">
+    <div class="hero-badge">✨ Novo Método Revelado Para Mulheres 60+</div>
+    <h1>
+      Volte a Caminhar com <em>Leveza, Segurança</em> e Disposição<br>
+      em Apenas 15 Minutos por Dia
+    </h1>
+    <p class="hero-sub">
+      Sem sair de casa. Sem precisar de academia. Sem exercícios difíceis.<br>
+      O Método Passo Leve foi criado especialmente para o seu corpo, na sua fase da vida.
+    </p>
+
+    <div class="hero-proof">
+      <span class="stars">★★★★★</span>
+      <span>+2.400 mulheres já transformaram seus passos com este método</span>
+    </div>
+
+    <a href="#oferta" class="btn-cta">QUERO CAMINHAR COM LEVEZA →</a>
+    <p class="btn-cta-sub">🔒 Compra 100% segura · Garantia de 7 dias</p>
+
+    <div class="hero-image-wrapper">
+      <div class="mock-woman">
+        <div class="figure">🚶‍♀️</div>
+        <p>Mulheres reais, resultados reais.<br>Sem truques, sem promessas vazias.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. IDENTIFICAÇÃO COM A DOR -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="dor-section">
+  <div class="container text-center">
+    <div class="section-label">Você se identifica com isso?</div>
+    <h2 class="section-title">Você Acorda Sentindo que o Seu<br><em>Corpo Ficou Para Trás?</em></h2>
+    <p class="section-subtitle">
+      Se alguma dessas situações faz parte do seu dia a dia, saiba que você não está sozinha — e existe uma saída.
+    </p>
+
+    <div class="dor-grid">
+      <div class="dor-card">
+        <div class="dor-icon">😔</div>
+        <h3>Dores nas Pernas e Joelhos</h3>
+        <p>Cada passo parece um esforço. Você levanta da cama e já sente aquele peso nas articulações que não vai embora.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-icon">🪑</div>
+        <h3>Rigidez ao Levantar</h3>
+        <p>Sair de uma cadeira ou do sofá virou uma tarefa que exige força de vontade. O corpo demora a "esquentar" de manhã.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-icon">😰</div>
+        <h3>Medo Constante de Cair</h3>
+        <p>Você evita situações por medo de perder o equilíbrio. Escadas, pisos molhados e ruas irregulares te assustam.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-icon">🛋️</div>
+        <h3>Disposição que Sumiu</h3>
+        <p>Antes você adorava sair, passear, visitar amigos. Hoje a cansaço chega rápido e a vontade foi embora junto.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-icon">⏳</div>
+        <h3>Sensação de Envelhecimento</h3>
+        <p>Por dentro você ainda é a mesma mulher cheia de vida. Mas o corpo parece não acompanhar mais o seu espírito.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-icon">💔</div>
+        <h3>Dependência de Outros</h3>
+        <p>Precisar pedir ajuda para coisas simples dói mais do que a dor física. Você quer sua independência de volta.</p>
+      </div>
+    </div>
+
+    <div class="dor-closing">
+      <p>
+        Se você leu até aqui sentindo que alguém finalmente entendeu o que está passando,<br>
+        <strong>você está no lugar certo.</strong> O Método Passo Leve foi criado exatamente para você.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. BIG IDEA -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="big-idea">
+  <div class="container text-center">
+    <div class="section-label" style="color: var(--gold-light);">A verdade que ninguém te contou</div>
+    <h2 class="section-title">O Problema <em>Não É a Sua Idade.</em><br>É o Seu Corpo Travado.</h2>
+    <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">
+      A ciência comprova: o corpo humano pode se recuperar, ganhar força e mobilidade em qualquer fase da vida. O que está te impedindo não é o calendário.
+    </p>
+
+    <div class="idea-box">
+      <div class="myth-vs">
+        <div class="myth-box wrong">
+          <div class="label">❌ O Mito</div>
+          <p>"Com mais de 60 anos, é normal sentir dor, rigidez e perder a mobilidade. É a idade."</p>
+        </div>
+        <div class="myth-box right">
+          <div class="label">✅ A Verdade</div>
+          <p>"O corpo trava por falta de movimento correto, não por causa dos anos. Com o estímulo certo, ele responde."</p>
+        </div>
+      </div>
+      <p>
+        O que acontece é simples: com o tempo, os músculos ao redor das articulações ficam <strong>encurtados e enfraquecidos</strong> por falta de movimento. Isso cria um ciclo — a dor faz você mover menos, e mover menos aumenta a dor.
+      </p>
+      <p>
+        O Método Passo Leve <strong>quebra esse ciclo</strong> com exercícios de baixo impacto, especialmente sequenciados para destravar, ativar e fortalecer — na ordem certa, no tempo certo, para o seu tipo de corpo.
+      </p>
+      <p>
+        Não é academia. Não é sofrimento. É ciência aplicada com carinho, no ritmo da sua vida.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. APRESENTAÇÃO DA SOLUÇÃO -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="solucao">
+  <div class="container text-center">
+    <div class="section-label">A solução</div>
+    <h2 class="section-title">Conheça o <em>Protocolo 5-5-5</em><br>do Método Passo Leve</h2>
+    <p class="section-subtitle">
+      15 minutos por dia, divididos em 3 etapas cientificamente organizadas para dar ao seu corpo exatamente o que ele precisa.
+    </p>
+
+    <div class="protocolo-visual">
+      <div class="proto-block">
+        <div class="proto-num">5</div>
+        <h3>Mobilidade</h3>
+        <p>Soltar as articulações e preparar o corpo</p>
+        <div class="proto-arrow">›</div>
+      </div>
+      <div class="proto-block">
+        <div class="proto-num">5</div>
+        <h3>Ativação</h3>
+        <p>Acordar os músculos que ficaram adormecidos</p>
+        <div class="proto-arrow">›</div>
+      </div>
+      <div class="proto-block">
+        <div class="proto-num">5</div>
+        <h3>Fortalecimento</h3>
+        <p>Construir a base para caminhar com segurança</p>
+      </div>
+    </div>
+
+    <div class="solucao-desc">
+      <p>Cada etapa tem uma função específica. Juntas, elas criam um efeito acumulativo que você começa a sentir já nos primeiros dias — e que se aprofunda semana após semana.</p>
+      <p>São exercícios feitos de pé ou sentada, sem precisar deitar no chão, sem equipamentos e sem sair de casa. Simples, seguros e eficazes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. AS 3 FASES (15 DIAS) -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="fases">
+  <div class="container text-center">
+    <div class="section-label">O programa completo</div>
+    <h2 class="section-title">Como Funciona:<br><em>15 Dias de Transformação</em></h2>
+    <p class="section-subtitle">
+      Cada fase foi pensada para construir sobre a anterior. Você evolui no seu ritmo, com segurança.
+    </p>
+
+    <div class="fases-timeline">
+      <div class="fase-item">
+        <div class="fase-num-wrap">
+          <div class="fase-num">1</div>
+        </div>
+        <div class="fase-content">
+          <div class="fase-dias">Dias 1 a 5</div>
+          <h3>Fase Destravar 🔓</h3>
+          <p>O foco é suavizar a rigidez. Movimentos de mobilidade articular que progressivamente soltam quadril, joelhos, tornozelos e coluna. Muitas mulheres já relatam acordar com menos dor na segunda semana.</p>
+          <span class="fase-result">✨ Resultado: corpo mais solto ao acordar</span>
+        </div>
+      </div>
+      <div class="fase-item">
+        <div class="fase-num-wrap">
+          <div class="fase-num">2</div>
+        </div>
+        <div class="fase-content">
+          <div class="fase-dias">Dias 6 a 10</div>
+          <h3>Fase Fortalecer 💪</h3>
+          <p>Com as articulações mais livres, é hora de acordar e fortalecer os músculos de sustentação — especialmente quadríceps, panturrilhas e core, que são a base do equilíbrio e da segurança ao caminhar.</p>
+          <span class="fase-result">✨ Resultado: mais equilíbrio e menos medo de cair</span>
+        </div>
+      </div>
+      <div class="fase-item">
+        <div class="fase-num-wrap">
+          <div class="fase-num">3</div>
+        </div>
+        <div class="fase-content">
+          <div class="fase-dias">Dias 11 a 15</div>
+          <h3>Fase Caminhar com Leveza 🚶‍♀️</h3>
+          <p>A fase mais esperada. Com o corpo destravado e os músculos ativados, você conecta tudo na prática do caminhar. Passos mais seguros, postura melhorada e uma disposição que você não sentia há muito tempo.</p>
+          <span class="fase-result">✨ Resultado: caminhar com prazer e segurança de novo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. BENEFÍCIOS -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="beneficios">
+  <div class="container text-center">
+    <div class="section-label" style="color: var(--gold-light);">O que você vai conquistar</div>
+    <h2 class="section-title">Sua Vida Quando Você<br><em>Dá o Primeiro Passo</em></h2>
+
+    <div class="bene-grid">
+      <div class="bene-card">
+        <div class="bene-icon">🌅</div>
+        <h3>Acordar Sem Aquela Dor</h3>
+        <p>Sentir o corpo mais leve ao sair da cama. Cada manhã com menos rigidez e mais disposição.</p>
+      </div>
+      <div class="bene-card">
+        <div class="bene-icon">🛒</div>
+        <h3>Fazer Suas Compras Sozinha</h3>
+        <p>Ir ao mercado, caminhar no shopping, passear no parque — sem depender de ninguém.</p>
+      </div>
+      <div class="bene-card">
+        <div class="bene-icon">⚖️</div>
+        <h3>Equilíbrio de Verdade</h3>
+        <p>Andar em pisos irregulares, subir escadas e sair à chuva sem aquele frio na barriga do medo.</p>
+      </div>
+      <div class="bene-card">
+        <div class="bene-icon">👶</div>
+        <h3>Brincar com os Netos</h3>
+        <p>Ter energia e mobilidade para participar da vida dos seus netos com alegria e presença.</p>
+      </div>
+      <div class="bene-card">
+        <div class="bene-icon">🫀</div>
+        <h3>Saúde que se Mantém</h3>
+        <p>Movimento regular reduz pressão arterial, melhora circulação e o humor. Seu corpo agradece.</p>
+      </div>
+      <div class="bene-card">
+        <div class="bene-icon">✨</div>
+        <h3>Sua Dignidade de Volta</h3>
+        <p>A maior transformação é interior: saber que você cuida de si mesma e controla a própria vida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7. PROVAS / CREDIBILIDADE -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="provas">
+  <div class="container text-center">
+    <div class="section-label">Por que confiar</div>
+    <h2 class="section-title">Um Método <em>Seguro e Validado</em><br>Por Quem Entende do Assunto</h2>
+
+    <div class="credenciais">
+      <div class="cred-item">
+        <span class="cred-icon">🏆</span>
+        <p>+2.400 alunas em todo Brasil</p>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">👩‍⚕️</span>
+        <p>Baseado em fisioterapia geriátrica</p>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">🔬</span>
+        <p>Exercícios de baixo impacto validados</p>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">💚</span>
+        <p>Aprovado por médicos e fisioterapeutas</p>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">📱</span>
+        <p>Acesso vitalício pelo celular</p>
+      </div>
+    </div>
+
+    <div class="section-label">Histórias reais de transformação</div>
+    <h2 class="section-title" style="font-size: 32px;">O que elas estão dizendo</h2>
+
+    <div class="depo-grid">
+      <div class="depo-card">
+        <p class="depo-text">Eu tinha desistido de caminhar no parque. A dor no joelho era constante. <strong>Em 12 dias de Método Passo Leve, voltei a fazer meu passeio matinal.</strong> Não acreditei que seria tão rápido.</p>
+        <div class="depo-author">
+          <div class="depo-avatar">M</div>
+          <div>
+            <div class="depo-name">Maria Aparecida, 67 anos</div>
+            <div class="depo-info">Aposentada — São Paulo, SP</div>
+            <div class="depo-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card">
+        <p class="depo-text">Minha maior conquista foi conseguir brincar com minha neta de 4 anos no chão. <strong>Antes eu não conseguia me abaixar sem muita dor.</strong> Hoje faço isso com alegria.</p>
+        <div class="depo-author">
+          <div class="depo-avatar">R</div>
+          <div>
+            <div class="depo-name">Rosimeire Santos, 63 anos</div>
+            <div class="depo-info">Avó — Belo Horizonte, MG</div>
+            <div class="depo-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card">
+        <p class="depo-text">Fui ao supermercado sozinha pela primeira vez em dois anos. <strong>Comprei, carreguei as sacolas e voltei pra casa sem ajuda.</strong> Chorei de alegria. Valeu cada centavo.</p>
+        <div class="depo-author">
+          <div class="depo-avatar">L</div>
+          <div>
+            <div class="depo-name">Luzia Ferreira, 71 anos</div>
+            <div class="depo-info">Costureira aposentada — Recife, PE</div>
+            <div class="depo-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 8. O QUE VOCÊ RECEBE -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="recebe">
+  <div class="container text-center">
+    <div class="section-label">Tudo que está incluído</div>
+    <h2 class="section-title">O Que Você Recebe ao<br><em>Entrar para o Método Passo Leve</em></h2>
+
+    <div class="produto-principal">
+      <div class="prod-tag">Programa Principal</div>
+      <h3>Método Passo Leve — Protocolo 5-5-5 Completo</h3>
+      <p>O programa em vídeo com todos os 15 dias de exercícios guiados, demonstrados de forma clara, no seu ritmo, com voz calma e instruções simples de seguir.</p>
+      <ul class="incluso-list">
+        <li>15 aulas em vídeo (uma para cada dia)</li>
+        <li>Exercícios demonstrados em posição sentada e de pé</li>
+        <li>Guia rápido em PDF para consultar a qualquer momento</li>
+        <li>Acesso pelo celular, tablet ou computador</li>
+        <li>Acesso vitalício — você assiste quantas vezes quiser</li>
+      </ul>
+    </div>
+
+    <div class="bonus-grid">
+      <div class="bonus-card">
+        <div class="bonus-num">Bônus 1</div>
+        <h3>Guia da Caminhada Saudável</h3>
+        <p>Manual completo com postura correta, ritmo ideal, o que usar e como progredir com segurança depois dos 15 dias.</p>
+        <div class="bonus-valor">Valor: R$47 — GRÁTIS para você</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">Bônus 2</div>
+        <h3>Receitas Anti-Inflamatórias</h3>
+        <p>27 receitas práticas com alimentos que reduzem inflamação nas articulações e ajudam o corpo a recuperar mais rápido.</p>
+        <div class="bonus-valor">Valor: R$37 — GRÁTIS para você</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">Bônus 3</div>
+        <h3>Rotina do Sono Reparador</h3>
+        <p>Sequência de 5 minutos antes de dormir que relaxa o corpo, reduz dores noturnas e melhora a qualidade do descanso.</p>
+        <div class="bonus-valor">Valor: R$27 — GRÁTIS para você</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 44px; background: var(--sage-light); border-radius: 16px; padding: 28px; text-align: center;">
+      <p style="font-size: 16px; color: var(--sage-dark); margin-bottom: 6px; font-weight: 700;">Valor total de tudo isso:</p>
+      <p style="font-family: 'Playfair Display', serif; font-size: 28px; text-decoration: line-through; color: var(--warm-gray);">R$208</p>
+      <p style="font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900; color: var(--sage-dark);">Hoje: apenas R$97</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 9. OFERTA IRRESISTÍVEL -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="oferta" id="oferta">
+  <div class="container text-center">
+    <div class="section-label">Oferta especial de lançamento</div>
+    <h2 class="section-title">Comece Hoje.<br><em>Seu Corpo Está Esperando.</em></h2>
+
+    <div class="oferta-box">
+      <div class="oferta-header">
+        <h3>Método Passo Leve — Acesso Completo</h3>
+        <p>Tudo que você precisa para voltar a caminhar com leveza e segurança</p>
+      </div>
+      <div class="oferta-body">
+
+        <div class="valor-stack">
+          <div class="valor-original">De R$208</div>
+          <div class="valor-label">Por apenas</div>
+          <div class="valor-preco"><span>R$</span>97</div>
+          <div class="valor-detalhe">Pagamento único · Acesso vitalício</div>
+        </div>
+
+        <ul class="incluso-oferta">
+          <li><span class="check">✓</span> Método Passo Leve Completo (15 dias) <span class="valor-item">R$97</span></li>
+          <li><span class="check">✓</span> Bônus 1: Guia da Caminhada Saudável <span class="valor-item">R$47</span></li>
+          <li><span class="check">✓</span> Bônus 2: Receitas Anti-Inflamatórias <span class="valor-item">R$37</span></li>
+          <li><span class="check">✓</span> Bônus 3: Rotina do Sono Reparador <span class="valor-item">R$27</span></li>
+          <li><span class="check">✓</span> Acesso vitalício pelo celular <span class="valor-item">Incluso</span></li>
+          <li><span class="check">✓</span> Suporte por WhatsApp <span class="valor-item">Incluso</span></li>
+        </ul>
+
+        <div class="order-bump">
+          <input type="checkbox" id="bump" />
+          <div class="order-bump-text">
+            <p><strong>⚡ Adicione: Sessão de Fisioterapia em Casa — R$37</strong><br>
+            Vídeo-aula detalhada com uma fisioterapeuta especialista ensinando técnicas de alívio para dor no joelho e quadril. Complemento perfeito ao Método Passo Leve.</p>
+          </div>
+        </div>
+
+        <a href="#" class="btn-cta" style="display: block; text-align: center; margin-bottom: 16px; animation: pulse-gold 2.5s ease-in-out infinite;">
+          QUERO COMEÇAR AGORA POR R$97 →
+        </a>
+        <p style="font-size: 13px; color: var(--warm-gray); text-align: center;">
+          🔒 Pagamento 100% seguro · Cartão, PIX ou Boleto
+        </p>
+
+        <div class="garantia-box">
+          <div class="garantia-icon">🛡️</div>
+          <h4>Garantia Incondicional de 7 Dias</h4>
+          <p>Se por qualquer motivo você não gostar do programa nos primeiros 7 dias, devolvemos 100% do seu dinheiro. Sem burocracia, sem perguntas. O risco é todo nosso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 10. FAQ -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="faq">
+  <div class="container text-center">
+    <div class="section-label">Suas dúvidas respondidas</div>
+    <h2 class="section-title">Perguntas <em>Frequentes</em></h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Será que eu consigo fazer os exercícios?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Sim! O Método Passo Leve foi desenvolvido especificamente para mulheres a partir dos 60 anos. Os exercícios são suaves, progressivos e feitos no seu ritmo. Você começa de onde está, sem precisar ter nenhuma aptidão física. Muitas de nossas alunas nunca praticaram exercício antes de começar com a gente.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          E se eu tiver limitações físicas ou problemas de saúde?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          O programa foi pensado para ser seguro mesmo para quem tem artrose, hipertensão, osteoporose leve ou restrições de movimento. A maioria dos exercícios pode ser feita sentada. Mesmo assim, recomendamos sempre consultar seu médico antes de iniciar qualquer atividade física, especialmente se você tiver condições específicas.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Funciona para a minha idade (70, 75 anos)?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Absolutamente. Nosso programa atende mulheres de 60 a 80 anos com excelentes resultados. O corpo humano tem uma capacidade incrível de responder ao movimento, mesmo em idades mais avançadas. A chave é o estímulo correto — e é exatamente isso que o Protocolo 5-5-5 entrega.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Quanto tempo até sentir resultado?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          A maioria das alunas relata sentir os primeiros sinais de melhora entre o 3º e o 5º dia — principalmente menos rigidez ao acordar. Resultados mais expressivos como melhora no equilíbrio e redução das dores aparecem ao longo das duas semanas. Mas cada corpo tem seu ritmo, e isso é absolutamente normal e esperado.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Precisa de algum equipamento ou espaço grande?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Não. Você precisa apenas de uma cadeira firme e um espaço de 1 metro ao redor de você. Nada de halteres, tapetes caros ou máquinas. O próprio peso do corpo faz todo o trabalho — esse é justamente o segredo do método.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Como acesso os vídeos? Sei mexer no celular.
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Se você sabe abrir o YouTube ou o WhatsApp, você consegue assistir às aulas. Logo após a compra, você recebe por e-mail um link de acesso simples. Basta clicar e assistir, na hora que quiser, quantas vezes quiser. Funciona no celular, tablet ou computador.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          E se eu não gostar? Como funciona a garantia?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Simples: nos primeiros 7 dias, se por qualquer motivo você quiser seu dinheiro de volta, é só enviar uma mensagem para nosso suporte. Devolvemos 100% do valor sem fazer perguntas. Não existe risco para você. A confiança é tanta que colocamos o risco no nosso lado.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 11. FECHAMENTO EMOCIONAL -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="fechamento">
+  <div class="container">
+    <div class="section-label" style="color: var(--gold-light);">Uma última coisa...</div>
+    <h2>
+      Você Merece Mais do que <em>Sobreviver</em> ao Seu Próprio Corpo.
+    </h2>
+    <p>
+      Durante anos, você cuidou da casa, dos filhos, da família. Agora é a sua vez.
+      Não é egoísmo querer se mover sem dor. Não é vaidade querer sua independência de volta.
+      É o mínimo que você merece.
+    </p>
+    <p>
+      Imagine daqui a 15 dias acordar mais leve. Dar aquele passeio que você adiava. Abraçar seus netos sem aquela pontada. Olhar no espelho e reconhecer a mulher forte que você sempre foi.
+    </p>
+    <p>
+      Esse caminho existe. Ele começa agora. Com um clique. Por apenas R$97.
+    </p>
+
+    <a href="#oferta" class="btn-cta" style="font-size: 18px; padding: 22px 60px;">
+      SIM, QUERO MEUS PASSOS DE VOLTA →
+    </a>
+    <p class="fechamento-nota">🛡️ Garantia de 7 dias · 🔒 Pagamento 100% seguro · 📱 Acesso imediato</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- RODAPÉ -->
+<!-- ══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <p><strong style="color: rgba(255,255,255,0.7);">Método Passo Leve</strong> — Todos os direitos reservados</p>
+    <p style="margin-top: 8px;">
+      <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a> · <a href="#">Contato</a>
+    </p>
+    <p style="margin-top: 12px; font-size: 12px; max-width: 620px; margin-left: auto; margin-right: auto;">
+      Este produto é um infoproduto educacional e não substitui acompanhamento médico ou fisioterapêutico. Sempre consulte um profissional de saúde antes de iniciar qualquer programa de exercícios. Resultados individuais podem variar.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Smooth scroll for CTA buttons
+  document.querySelectorAll('a[href="#oferta"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('oferta').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Order bump toggle
+  document.getElementById('bump').addEventListener('change', function() {
+    const label = document.querySelector('.order-bump-text strong');
+    if (this.checked) {
+      label.style.color = '#3B6150';
+      label.textContent = '✓ Adicionado: Sessão de Fisioterapia em Casa — R$37';
+    } else {
+      label.style.color = 'var(--red-urgent)';
+      label.textContent = '⚡ Adicione: Sessão de Fisioterapia em Casa — R$37';
+    }
+  });
+</script>
+</body>
+</html>
