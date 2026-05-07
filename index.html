@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -195,9 +195,36 @@
   .hero-cta-group {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
     opacity: 0;
     animation: fadeUp 0.7s 0.8s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    min-width: 210px;
+    max-width: none;
+    letter-spacing: 0.2px;
+  }
+
+  .hero-actions .btn-secondary {
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(90,138,106,0.28);
+    color: var(--texto);
+    box-shadow: 0 8px 26px rgba(58,53,48,0.07);
+  }
+
+  .hero-actions .btn-secondary:hover {
+    border-color: var(--verde);
+    color: var(--verde);
   }
 
   .btn-primary {
@@ -1126,6 +1153,7 @@
     #inicio { text-align: center; }
     .hero-micro { justify-content: center; }
     .hero-cta-group { align-items: center; }
+    .hero-actions { justify-content: center; }
   }
 
   @media (max-width: 600px) {
@@ -1138,6 +1166,8 @@
     .solucao-intro { padding: 28px 24px; }
     .faq-list { max-width: 100%; }
     .btn-primary, .btn-secondary { width: 100%; max-width: 100%; }
+    .hero-actions { width: 100%; }
+    .hero-actions .btn-primary, .hero-actions .btn-secondary { min-width: 0; }
     .whatsapp-float { bottom: 18px; right: 18px; }
     .confianca-quote { padding: 36px 28px; }
     .para-quem-visual { padding: 36px 28px; }
@@ -1183,10 +1213,10 @@
         Um programa simples com alimentação equilibrada, exercícios leves e acompanhamento pelo WhatsApp para ajudar mulheres 60+ a cuidarem melhor do corpo sem sair de casa.
       </p>
       <div class="hero-cta-group">
-        <a href="pagamento.html" class="btn-primary">
-          <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar agora por R$ 9,90
-        </a>
+        <div class="hero-actions">
+          <a href="pagamento.html" class="btn-primary">Começar por R$ 9,90</a>
+          <a href="https://wa.me/5517992062060?text=Gostaria%20de%20saber%20sobre%20o%20M%C3%A9todo%20Passo%20Leve" class="btn-secondary" target="_blank" rel="noopener">Tirar uma dúvida</a>
+        </div>
         <div class="hero-micro">
           <span>📱 Atendimento pelo WhatsApp</span>
           <span class="dot">•</span>
@@ -1610,6 +1640,8 @@
 </script>
 </body>
 </html>
+
+
 
 
 
